@@ -44,14 +44,14 @@ Rather than a simple binary win/loss classification, this program uses an XGBoos
 
 March Madness is notoriously hard to predict, with 63 games over the course of the tournament and a probability of 100% accuracy at 1 in 9.22e^18 (2^63). The model performed admirably well with 49/63 correct predictions or 77.78% accuracy. 
 
-Just by dumb luck a bracket prediction can be extremely accurate, however I had already determined the model would be great at its job just based on the training data. 
+Just by dumb luck a bracket prediction can be extremely accurate, however I had already determined the model would be great at its job just based on the initial testing data. 
 
 Over the 10-fold cross-validation process, the model yielded the following error metrics:
 
     Average Mean Absolute Error (MAE): 8.67 ± 0.50 points
     Average Root Mean Squared Error (RMSE): 10.78 ± 0.60 points
     
-What this means: On average, the model's predicted point differential is within about 8.7 points of the actual final score. Given the high variance of single-elimination college basketball (where late-game intentional fouling and blowout garbage time heavily impact final scores), an MAE under 9 points represents a highly competitive baseline for spread betting and bracketology.
+Meaning that on average, the model's predicted point differential is within about 8.7 points of the actual final score. Given the high variance of single-elimination college basketball (where late-game intentional fouling and blowout garbage time heavily impact final scores), an MAE under 9 points represents a highly competitive baseline for spread betting and bracketology.
 ## 2026 Tournament Prediction Results
 
 The script simulates the entire 2026 tournament round-by-round, feeding the winners of each round into the next. According to the XGBoost model's season-average differential calculations, here is how the model performed each round:
