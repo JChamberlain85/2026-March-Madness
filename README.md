@@ -1,12 +1,12 @@
 # 2026 March Madness Bracket Predictor
 
-This repository contains a machine learning pipeline designed to predict the outcomes of the 2026 Men's NCAA Basketball Tournament. Using historical Kaggle datasets and advanced basketball analytics, the program trains an Extreme Gradient Boosting (XGBoost) model to forecast the point differential between any two matched teams, automatically advancing the winners through a simulated 64-team bracket.
+For my Stat 4210 - Statistical Machine Learning honors project I set myself the task the outcomes of the 2026 Men's NCAA Basketball Tournament using the machine learning techniques I had studied. Using historical Kaggle datasets and advanced basketball analytics, the program runs an Extreme Gradient Boosting (XGBoost) model to forecast the point differential between any two matched teams, automatically advancing the winners through a simulated 64-team bracket.
+
 ## Program Scope and Execution
 
-Extreme Gradient Boosting (XGBoost) is an ensemble machine learning algorithm that builds a series of decision trees sequentially, where each new tree is specifically designed to predict and correct the residual errors made by the previous ones. By continuously learning from past mistakes and using gradient descent to minimize its loss function, it gradually converges on highly accurate forecasts. 
+Extreme Gradient Boosting (XGBoost) is an ensemble machine learning algorithm that builds a series of decision trees sequentially, where each new tree is specifically designed to predict and correct the residual errors made by the previous ones. By continuously learning from past mistakes and using gradient descent to minimize its loss function, it gradually converges on highly accurate forecasts by tweaking parameter weights until a minimal error is found. 
 
-For predicting March Madness point spreads, XGBoost was the optimal choice because it excels at capturing complex, non-linear interactions within tabular data—such as how a team's pace might uniquely interact with an opponent's rebounding or turnover metrics. College basketball data is notoriously volatile, filled with garbage-time scoring, intentional fouling, and unpredictable upsets. XGBoost addresses this through its robust, built-in mathematical regularization. By combining these regularization techniques with conservative, shallow decision trees, the model is prevented from overfitting to the "noise" of the tournament. Instead of memorizing historical anomalies, it isolates the true underlying statistical advantages between two matchups, making it exceptionally well-suited for the high-variance environment of NCAA basketball.
-
+For predicting March Madness point spreads, XGBoost was the optimal choice because it excels at capturing complex, non-linear interactions within tabular data—such as how a team's pace might uniquely interact with an opponent's rebounding or turnover metrics. College basketball data is notoriously volatile, filled with garbage-time scoring, intentional fouling, and unpredictable upsets. XGBoost addresses this through its built in regularization. By combining these regularization techniques with conservative, shallow decision trees, the model is prevented from overfitting to the "noise" of the tournament. Instead of memorizing historical anomalies, it isolates the true underlying statistical advantages between two matchups, making it exceptionally well-suited for the high-variance environment of NCAA basketball.
 
 ## 1. Data Aggregation and Feature Engineering
 
@@ -25,6 +25,7 @@ Season and Tournament data ranging 2003-present from Kaggle's Men's March Madnes
 Once game-level stats are calculated, the code groups the data by Season and TeamID to calculate season-long averages.
 
 To prep the data for the model, the script pairs teams up and calculates the statistical differences between Team 1 and Team 2 (e.g., Team 1 Net Rating - Team 2 Net Rating, Team 1 Seed - Team 2 Seed). To prevent the model from learning an arbitrary ordering bias (e.g., assuming "Team 1" is always the favorite), the team assignments are randomized before computing the differentials.
+
 ## How the Model Works
 
 Rather than a simple binary win/loss classification, this program uses an XGBoost Regressor to predict the exact point spread of the game. This allows us to grasp the confidence the model has in its prediction.
@@ -73,7 +74,7 @@ While this wasn't the #1 bracket or even the best designed model it did destroy 
 
 | Bracket                  | Points | % Accuracy | Type                 |
 |--------------------------|--------|------------|----------------------|
-|  **XGBoost Model**       | **1360** | **77.8%** | **XGBoost**         |
+|  **XGBoost Model**       | **1360** | **77.8%** | **Extreme Gradient Boost**         |
 | ESPN Auto Picks          | 870    | 71.4%      | Algorithmic          |
 | My Picks                 |  760   | 66.7%    |   Hand Picked         | 
 | ChatGPT Picks            | 740    | 63.5%      | LLM-based logic      |
